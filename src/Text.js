@@ -13,6 +13,7 @@ class Text extends DatabaseObject {
      * @param {string} value - the string itself
      * @param {string} [horizontalAlignment="left"] left | center | right
      * @param {string} [verticalAlignment="baseline"] baseline | bottom | middle | top
+     * @param {number} [thickness="0"] - Text thickness
      */
     constructor(
         x,
@@ -21,7 +22,8 @@ class Text extends DatabaseObject {
         rotation,
         value,
         horizontalAlignment = "left",
-        verticalAlignment = "baseline"
+        verticalAlignment = "baseline",
+        thickness = 0
     ) {
         super(["AcDbEntity", "AcDbText"]);
         this.x = x;
@@ -31,6 +33,8 @@ class Text extends DatabaseObject {
         this.value = value;
         this.hAlign = horizontalAlignment;
         this.vAlign = verticalAlignment;
+        this.thickness = thickness;
+
     }
 
     tags() {
@@ -44,6 +48,7 @@ class Text extends DatabaseObject {
         manager.addTag(40, this.height);
         manager.addTag(1, this.value);
         manager.addTag(50, this.rotation);
+        manager.addTag(39, this.thickness);
 
         if (
             H_ALIGN_CODES.includes(this.hAlign, 1) ||
