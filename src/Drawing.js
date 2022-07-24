@@ -8,6 +8,7 @@ const AppId = require("./AppId");
 const Block = require("./Block");
 const BlockRecord = require("./BlockRecord");
 const Dictionary = require("./Dictionary");
+const Hatch = require("./Hatch");
 const Line = require("./Line");
 const Line3d = require("./Line3d");
 const Arc = require("./Arc");
@@ -93,6 +94,11 @@ class Drawing {
 
     drawLine(x1, y1, x2, y2) {
         this.activeLayer.addShape(new Line(x1, y1, x2, y2));
+        return this;
+    }
+
+    drawHatch(multiline, color) {
+        this.activeLayer.addShape(new Hatch(multiline, color));
         return this;
     }
 
