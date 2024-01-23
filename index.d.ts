@@ -241,6 +241,8 @@ declare module "dxf-writer" {
         | "MAGENTA"
         | "WHITE";
 
+    export type HatchPoints = [Point2D, Point2D, Point2D];
+
     export default class Drawing implements RenderableToDxf {
         constructor();
 
@@ -286,6 +288,12 @@ declare module "dxf-writer" {
             cornerLength?: number,
             cornerBulge?: number
         ): Drawing;
+        
+        /**
+         * @param {array} points - Tuple of points like [ [x1, y1], [x2, y2], [x3, y3] ]
+         * @param {number} color
+         */
+        drawHatch(points: HatchPoints, color: number): Drawing;
 
         /**
          * Draw a regular convex polygon as a polyline entity.
